@@ -1,0 +1,84 @@
+<h1>Hero Form</h1>
+<!--
+  rememer that we are using bootstrap here.
+  so, all classes used are defined in Bootstrap.
+ -->
+<div class="form-group">
+  <!--
+    #heroForm is an example of template reference variable.
+    TODO: What is template reference variable?
+   -->
+  <form (ngSubmit)="onSubmit" #heroForm="ngForm">
+    <div class="form-group">
+      <label for="name">Hero Name</label>
+      <!--
+      When you use [(ngModel)] on an element, you must define a name attribute for the element.
+      Angular uses the assigned name to register the element with teh NgForm directive attached to the parent
+      <form> element.
+      https://angular.io/guide/forms
+
+      TODO: What does #name="ngModel" mean again?
+    -->
+      <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+      <!--
+        TODO: Where did the name.valid || name.pristine came from?
+          name.valid indicates wheather the form as valid value or not.
+          on this case, if it's not empty.
+
+          name.pristine means that the user hasn't changed the value on the form,
+          since it was last displayed.
+
+          if pristine is ignored, the message will be hidden only if the form is valid.
+          meaning that it has text on it. if you load field empty, the message will appear.
+       -->
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="power">Hero Powers</label>
+      <select id="power" class="form-control">
+        <!--
+          *ngFor is an Angular directive which allows you
+          to loop through an array (or collection)
+         -->
+        <option *ngFor="let pow of powers" [value]="">{{pow}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo">Alter Ego</label>
+      <input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo">
+    </div>
+    <!--
+      after the newHero() is called, the reset() gets executed.
+      this is to maintain the pristine condition of the form.
+     -->
+    <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">
+      New Hero
+    </button>
+    <!-- this submit button is disabled if the heroForm is invalid -->
+    <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">
+      Submit
+    </button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h2>You submitted the following:</h2>
+  <div class="row">
+    <div class="col-xs-3">Name</div>
+    <div class="col-xs-9">{{ model.name }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Alter Ego</div>
+    <div class="col-xs-9">{{ model.alterEgo }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Power</div>
+    <div class="col-xs-9">{{ model.power }}</div>
+  </div>
+  <br>
+  <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+</div>
