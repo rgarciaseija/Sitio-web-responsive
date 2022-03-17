@@ -1,3 +1,10 @@
-<h1>Super Hero Application</h1>
-
-<app-hero-form></app-hero-form>
+<div class="row">
+  <div class="col">
+    <app-hero-form (redirect)="send($event)"></app-hero-form>
+    <app-hero-table [newHero]="newHero" [heroes]="heroes" (selectedHero)="selectedHero($event)"></app-hero-table>
+  </div>
+  <div class="col">
+    <h2>Hero Profile Here</h2>
+    <app-hero-profile [heroProfile]="selectedHeroFile"></app-hero-profile>
+  </div>
+</div>

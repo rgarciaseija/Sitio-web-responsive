@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 /* Let's use Bootstrap 3.3.7 to make our design life easier. */
-@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+@import url('https://unpkg.com/bootstrap@4.1/dist/css/bootstrap.min.css');
 
 body {
   width: 80%;
+  height: 100vh;
   margin: 0 auto;
+  border: 1px solid black;
 }
 
 /* let's have this global to the app for now */

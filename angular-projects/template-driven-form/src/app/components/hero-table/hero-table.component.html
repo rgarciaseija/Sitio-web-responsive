@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <!--
+        TODO: What does scope attribute mean again>
+       -->
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Power</th>
+      <th scope="col">Alter Ego</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--
+      loop through the collection of heroes using *ngFor directive.
+      (click)="onSelect(hero)" defines the click event handler
+        and the hero object to be passed.
+     -->
+    <tr *ngFor="let hero of heroes" (click)="onClick(hero)">
+      <td>{{hero.id}}</td>
+      <td>{{hero.name}}</td>
+      <td>{{hero.power}}</td>
+      <td>{{hero.alterEgo}}</td>
+    </tr>
+  </tbody>
+</table>

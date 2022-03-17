@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HeroService } from './../../services/hero.service';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Hero } from './../../model/hero';
+import { Router } from '@angular/router';
 
 // this decorator tells angular
 // that this is a component
@@ -18,18 +20,22 @@ import { Hero } from './../../model/hero';
 // class from other files
 export class HeroFormComponent {
 
+  @Output() redirect:EventEmitter<Hero> =new EventEmitter();
+
   // array of powers
   powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
 
   // create new hero instance
-  model = new Hero(18, 'Dr. Brainless', this.powers[0], 'Chunk Overstreet');
+  // using the first hero on our mock data
+  model = new Hero(0, '', '', '');
 
   submitted = false;
 
-  constructor() { }
+  constructor(private heroService: HeroService, private router: Router) { }
 
   onSubmit() {
-    this.submitted = true;
+    this.submitted = true
+    this.redirect.emit(this.model);
   }
 
   newHero() {
