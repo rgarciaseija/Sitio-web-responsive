@@ -1,7 +1,9 @@
 import { HeroService } from './../../services/hero.service';
 import { Component, DoCheck, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { HEROES } from 'src/app/_mock-data/mock-heroes';
 import { Hero } from 'src/app/model/hero';
+
+// angular animations
+import { animate, transition } from '@angular/animations';
 
 
 @Component({

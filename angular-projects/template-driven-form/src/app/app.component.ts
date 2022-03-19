@@ -26,25 +26,25 @@ export class AppComponent implements OnInit {
     this.getHeroes();
   }
 
-  send(hero: Hero) {
+  updateHeroTable(hero: Hero) {
     this.newHero = hero;
-    console.log(this.newHero);
-    this.add(hero);
+    this.addHero(hero);
     this.getHeroes();
-    // this.router.navigate(['heroes']);//redirects url to new
   }
 
   selectedHero(heroFile : Hero) {
     this.selectedHeroFile = heroFile;
-    console.log(this.selectedHeroFile);
   }
 
-  add(hero: Hero) {
+  addHero(hero: Hero) {
+    // generate and id for our new hero
     hero.id = this.heroService.genId(this.heroes);
+    // add the new hero to our repository
     this.heroService.addHero(hero).subscribe();
   }
 
   getHeroes() {
+    // get all heroes
     this.heroService.getHereos().subscribe(h=>this.heroes=h);
   }
 }

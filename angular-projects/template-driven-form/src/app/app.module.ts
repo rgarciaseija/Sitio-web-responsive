@@ -4,8 +4,12 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
+// angular animations modules
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,10 +32,12 @@ import { HeroProfileComponent } from './components/hero-profile/hero-profile.com
     FormsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+      InMemoryDataService, { dataEncapsulation: false },
+    ),
+    BrowserModule,
+    BrowserAnimationsModule
   ],
-  providers: [HeroService],      // TODO: What does providers do?
+  providers: [],      // TODO: What does providers do?
   bootstrap: [AppComponent]
 })
 export class AppModule { }
