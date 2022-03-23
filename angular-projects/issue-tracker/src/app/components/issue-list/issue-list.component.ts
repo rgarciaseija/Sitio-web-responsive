@@ -9,7 +9,7 @@ import { Issue } from 'src/app/services/issue';
 })
 export class IssueListComponent implements OnInit {
 
-
+  showReportIssue: boolean = false;
   issues : Issue[] = [];
   constructor(private issueService: IssuesService) { }
 
@@ -21,4 +21,8 @@ export class IssueListComponent implements OnInit {
     this.issues = this.issueService.getPendingIssues();
   }
 
+  onCloseReport() {
+    this.showReportIssue = false;
+    this.getPendingIssues();
+  }
 }

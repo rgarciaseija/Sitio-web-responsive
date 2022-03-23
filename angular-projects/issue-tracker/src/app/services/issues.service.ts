@@ -15,4 +15,9 @@ export class IssuesService {
     // return issues that are not yet completed
     return this.issues.filter(issue => !issue.completed);
   }
+
+  createIssue(issue: Issue) {
+    issue.issueNo = this.issues.length + 1;
+    this.issues.push(issue);
+  }
 }
