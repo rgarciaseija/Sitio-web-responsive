@@ -1,5 +1,6 @@
+
 <ng-container *ngIf="showReportIssue===false">
-  <button class="btn btn-primary" (click)="showReportIssue=true">Add new issue</button>
+  <button class="btn btn-primary" (click)="showIssueForm()">Add new issue</button>
   <clr-datagrid>
     <clr-dg-column [clrDgField]="'issueNo'" [clrDgColType]="'number'">Issue Number</clr-dg-column>
     <clr-dg-column [clrDgField]="'title'">Title</clr-dg-column>
@@ -7,6 +8,9 @@
     <clr-dg-column [clrDgField]="'priority'">Priority</clr-dg-column>
 
     <clr-dg-row *clrDgItems="let issue of issues">
+      <clr-dg-action-overflow>
+        <button class="action-item" (click)="selectedIssue=issue">Resolve</button>
+      </clr-dg-action-overflow>
       <clr-dg-cell>{{issue.issueNo}}</clr-dg-cell>
       <clr-dg-cell>{{issue.title}}</clr-dg-cell>
       <clr-dg-cell>{{issue.description}}</clr-dg-cell>
@@ -17,5 +21,7 @@
       </clr-dg-cell>
     </clr-dg-row>
     </clr-datagrid>
-    <app-issue-report *ngIf="showReportIssue" (formClose)="onCloseReport()"></app-issue-report>
     </ng-container>
+    <app-issue-report *ngIf="showReportIssue===true" (formClose)="onCloseReport()"></app-issue-report>
+    <app-confirm-dialog *ngIf="selectedIssue" [issueNo]="selectedIssue.issueNo" (confirm)="onConfirm($event)">
+    </app-confirm-dialog>
