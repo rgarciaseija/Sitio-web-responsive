@@ -14,6 +14,7 @@ export class HeroService {
   // use mockup data for now
   // heroes = HEROES;
 
+  private heroes : Hero[] = [];
   private heroesUrl = 'api/heroes';
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -30,13 +31,20 @@ export class HeroService {
 
   // get one hero
   getHero(hero: Hero) : Observable<Hero> {
-    const url = `${this.heroesUrl}/detail/${hero.id}`;
-    return this.httpClient.get<Hero>(url);
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.httpClient.get<Hero>(url).pipe(
+      tap(_ => this.log('getHero')),
+      catchError(this.handleError<Hero>('error at getHeroes'))
+      );
   }
 
   getHeroByID(id: Number) : Observable<Hero> {
-    const url = `${this.heroesUrl}/detail/${id}`;
-    return this.httpClient.get<Hero>(url);
+    const url = `${this.heroesUrl}/${id}`;
+    console.log(url);
+    return this.httpClient.get<Hero>(url).pipe(
+      tap(_ => this.log('getHero')),
+      catchError(this.handleError<Hero>('error at getHeroes'))
+      );
   }
 
   // add one hero
@@ -56,8 +64,9 @@ export class HeroService {
     );
   }
 
-  genId(hero: Hero[]) : number {
-    return this.dbs.genId(hero);
+  genId() : number {
+    this.getHereos().subscribe(heroes => this.heroes = heroes);
+    return this.dbs.genId(this.heroes)
   }
 
   // logging function

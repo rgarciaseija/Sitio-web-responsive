@@ -3,6 +3,7 @@ import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { Hero } from './../../model/hero';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 // this decorator tells angular
 // that this is a component
 // and some metadata
@@ -19,10 +20,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 // here, export meanst that you can import this
 // class from other files
 export class HeroFormComponent implements OnInit {
-
-  @Output() redirect:EventEmitter<Hero> =new EventEmitter();
-  @Input() selectedHero? :  Hero | null = null;
-
   // array of powers
   powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
 
@@ -34,17 +31,30 @@ export class HeroFormComponent implements OnInit {
 
   id? : number | null;
   constructor(private heroService: HeroService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private route: Router) { }
 
   ngOnInit() {
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
+    if(id) {
+      this.getHero(id);
+    }
   }
 
   onSubmit() {
     this.submitted = true
-    this.redirect.emit(this.model);
+    this.addHero(this.model);
   }
 
-  newHero() {
-    this.model = new Hero(42, '', '');
+  addHero(hero: Hero) {
+    // generate and id for our new hero
+    hero.id = this.heroService.genId();
+    // add the new hero to our repository
+    this.heroService.addHero(hero).subscribe();
+    this.route.navigateByUrl(`/heroes/${hero.id}`);
+  }
+
+  getHero(id: number) {
+    this.heroService.getHeroByID(id).subscribe(hero=>this.model=hero);
   }
 }
