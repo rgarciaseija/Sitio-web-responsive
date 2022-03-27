@@ -14,6 +14,7 @@ import { animate, transition } from '@angular/animations';
 export class HeroTableComponent {
 
   @Output() selectedHero : EventEmitter<Hero> = new EventEmitter();
+  @Output() deletedHero : EventEmitter<Hero> = new EventEmitter();
   @Input() newHero? : Hero;
   @Input() heroes? : Hero[];
 
@@ -27,6 +28,10 @@ export class HeroTableComponent {
   onClick(hero: Hero) {
     // this will emit the selected hero
     this.selectedHero.emit(hero);
+  }
+
+  onDelete(hero: Hero) {
+    this.deletedHero.emit(hero);
   }
 
 }

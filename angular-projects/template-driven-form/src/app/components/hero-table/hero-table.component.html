@@ -8,7 +8,8 @@
       <th scope="col">Name</th>
       <th scope="col">Power</th>
       <th scope="col">Alter Ego</th>
-      <th scope="col">Delete</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +24,12 @@
       <td>{{hero.power}}</td>
       <td>{{hero.alterEgo}}</td>
       <td>
-        <button class="btn btn-outline-danger">
+        <a routerLink="detail/{{hero.id}}">
+          view
+        </a>
+        </td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="onDelete(hero)">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
             viewBox="0 0 16 16">
             <path

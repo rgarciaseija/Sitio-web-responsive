@@ -14,7 +14,7 @@ export class HeroService {
   // use mockup data for now
   // heroes = HEROES;
 
-  private heroesUrl = 'api/heroes/';
+  private heroesUrl = 'api/heroes';
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
   constructor(private httpClient: HttpClient,
@@ -30,12 +30,12 @@ export class HeroService {
 
   // get one hero
   getHero(hero: Hero) : Observable<Hero> {
-    const url = `${this.heroesUrl}details/${hero.id}`;
+    const url = `${this.heroesUrl}/detail/${hero.id}`;
     return this.httpClient.get<Hero>(url);
   }
 
   getHeroByID(id: Number) : Observable<Hero> {
-    const url = `${this.heroesUrl}details/${id}`;
+    const url = `${this.heroesUrl}/detail/${id}`;
     return this.httpClient.get<Hero>(url);
   }
 
@@ -44,6 +44,15 @@ export class HeroService {
     return this.httpClient.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap((newHero : Hero) => this.log(`added new Hero: ${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  // delete hero
+  deleteHero(hero: Hero) : Observable<Hero> {
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.httpClient.delete<Hero>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted Hero: ${hero.id}`)),
+      catchError(this.handleError<Hero>('deleteHero'))
     );
   }
 

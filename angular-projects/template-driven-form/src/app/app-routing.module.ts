@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'heroes', component: HeroTableComponent },
-  { path: 'details/:id', component: HeroFormComponent }
+  { path: 'detail/:id', component: HeroFormComponent }
 ];
 
 @NgModule({

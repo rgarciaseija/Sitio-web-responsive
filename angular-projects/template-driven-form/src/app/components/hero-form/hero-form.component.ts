@@ -1,7 +1,7 @@
 import { HeroService } from './../../services/hero.service';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { Hero } from './../../model/hero';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // this decorator tells angular
 // that this is a component
@@ -18,9 +18,10 @@ import { Router } from '@angular/router';
 })
 // here, export meanst that you can import this
 // class from other files
-export class HeroFormComponent {
+export class HeroFormComponent implements OnInit {
 
   @Output() redirect:EventEmitter<Hero> =new EventEmitter();
+  @Input() selectedHero? :  Hero | null = null;
 
   // array of powers
   powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer'];
@@ -31,7 +32,12 @@ export class HeroFormComponent {
 
   submitted = false;
 
-  constructor(private heroService: HeroService, private router: Router) { }
+  id? : number | null;
+  constructor(private heroService: HeroService,
+    private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit() {
+  }
 
   onSubmit() {
     this.submitted = true
