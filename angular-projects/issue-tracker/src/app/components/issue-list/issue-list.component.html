@@ -6,7 +6,7 @@
     <clr-dg-column [clrDgField]="'title'">Title</clr-dg-column>
     <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
     <clr-dg-column [clrDgField]="'priority'">Priority</clr-dg-column>
-
+    <clr-dg-column></clr-dg-column>
     <clr-dg-row *clrDgItems="let issue of issues">
       <clr-dg-action-overflow>
         <button class="action-item" (click)="selectedIssue=issue">Resolve</button>
@@ -19,9 +19,16 @@
           {{issue.priority}}
         </span>
       </clr-dg-cell>
+      <clr-dg-cell>
+        <button class="btn btn-outline" type="submit" (click)="editIssue(issue)">Edit</button>
+        <!-- <span class="btn btn-outline"> -->
+        <!-- {{issue.priority}} -->
+        <!-- </span> -->
+      </clr-dg-cell>
     </clr-dg-row>
     </clr-datagrid>
     </ng-container>
-    <app-issue-report *ngIf="showReportIssue===true" (formClose)="onCloseReport()"></app-issue-report>
-    <app-confirm-dialog *ngIf="selectedIssue" [issueNo]="selectedIssue.issueNo" (confirm)="onConfirm($event)">
-    </app-confirm-dialog>
+    <app-issue-report *ngIf="showReportIssue===true" (formClose)="onCloseReport()" [editIssue]="selectedIssue">
+    </app-issue-report>
+    <!-- <app-confirm-dialog *ngIf="selectedIssue" [issueNo]="selectedIssue.issueNo" (confirm)="onConfirm($event)">
+        </app-confirm-dialog> -->

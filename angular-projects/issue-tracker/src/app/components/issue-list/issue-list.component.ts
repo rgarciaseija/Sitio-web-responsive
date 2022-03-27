@@ -36,6 +36,14 @@ export class IssueListComponent implements OnInit {
     this.selectedIssue = null;
   }
 
+  editIssue(issue: Issue) {
+    this.selectedIssue = issue;
+    console.log(this.selectedIssue);
+
+    this.showReportIssue = true;
+    // console.log(issue);
+  }
+
   showIssueForm() {
     this.showReportIssue = true;
   }

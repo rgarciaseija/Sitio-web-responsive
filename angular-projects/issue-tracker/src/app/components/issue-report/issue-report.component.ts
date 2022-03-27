@@ -1,5 +1,5 @@
 import { IssuesService } from './../../services/issues.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Issue } from 'src/app/services/issue';
 
@@ -11,13 +11,16 @@ import { Issue } from 'src/app/services/issue';
 })
 export class IssueReportComponent implements OnInit {
 
+  @Input() editIssue: Issue | null = null;
   @Output() formClose = new EventEmitter();
 
   issueForm: FormGroup | undefined;
   suggestions: Issue[] = [];
 
   constructor(private formBuilder: FormBuilder,
-    private issueService: IssuesService) { }
+    private issueService: IssuesService) {
+      console.log(this.editIssue);
+    }
 
   ngOnInit(): void {
     // let's make all fields required for now
