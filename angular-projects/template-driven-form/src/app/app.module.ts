@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HeroFormComponent } from './components/hero-form/hero-form.component';
 import { HeroTableComponent } from './components/hero-table/hero-table.component';
 import { HeroProfileComponent } from './components/hero-profile/hero-profile.component';
+import { MessageComponent } from './components/message/message.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HeroProfileComponent } from './components/hero-profile/hero-profile.com
     AppComponent,
     HeroFormComponent,
     HeroTableComponent,
-    HeroProfileComponent
+    HeroProfileComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

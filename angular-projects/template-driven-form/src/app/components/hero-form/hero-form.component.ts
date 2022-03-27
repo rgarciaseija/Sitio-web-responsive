@@ -50,7 +50,7 @@ export class HeroFormComponent implements OnInit {
     // generate and id for our new hero
     hero.id = this.heroService.genId();
     // add the new hero to our repository
-    this.heroService.addHero(hero).subscribe();
+    this.heroService.addHero(hero).subscribe(data=>console.log(data));
     this.route.navigateByUrl(`/heroes/${hero.id}`);
   }
 

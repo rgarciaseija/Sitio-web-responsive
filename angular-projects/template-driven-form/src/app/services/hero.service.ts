@@ -1,3 +1,4 @@
+import { MessageService } from './message.service';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HEROES } from './../_mock-data/mock-heroes';
 import { Hero } from './../model/hero';
@@ -11,33 +12,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HeroService {
 
-  // use mockup data for now
-  // heroes = HEROES;
-
+  // define empty array of heroes
   private heroes : Hero[] = [];
+  // api url
   private heroesUrl = 'api/heroes';
+  //  httpHeader
   private httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
   constructor(private httpClient: HttpClient,
+    // inject our MessageService
+    private messageService: MessageService,
+    // inject our mock data provider
     private dbs : InMemoryDataService) { }
 
   // get all heroes
+  // this will return an Observable
   getHereos() : Observable<Hero[]> {
-    return this.httpClient.get<Hero[]>(this.heroesUrl).pipe(
-      tap(_ => this.log('getHeroes')),
-      catchError(this.handleError<Hero[]>('error at getHeroes', []))
-      );
+    return this.httpClient.get<Hero[]>(this.heroesUrl)
+    // .pipe(
+    //   tap(_ => this.log('getHeroes')),
+    //   catchError(this.handleError<Hero[]>('error at getHeroes', []))
+    // );
   }
 
-  // get one hero
-  getHero(hero: Hero) : Observable<Hero> {
-    const url = `${this.heroesUrl}/${hero.id}`;
-    return this.httpClient.get<Hero>(url).pipe(
-      tap(_ => this.log('getHero')),
-      catchError(this.handleError<Hero>('error at getHeroes'))
-      );
-  }
-
+  // get hero by ID
   getHeroByID(id: Number) : Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     console.log(url);
@@ -47,7 +45,7 @@ export class HeroService {
       );
   }
 
-  // add one hero
+  // add a hero
   addHero(hero: Hero): Observable<Hero> {
     return this.httpClient.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
       tap((newHero : Hero) => this.log(`added new Hero: ${newHero.id}`)),
@@ -74,11 +72,11 @@ export class HeroService {
   // events to database
   //
   // @param message - string message to be logged
-  private log(message: String) {
+  private log(message: string) {
     // this.messageService.add(`HerroMessageService: ${message}`);
     // let's log to console for now
     console.log(message);
-
+    this.messageService.add(message);
   }
 
   // handle http operation that failed.
