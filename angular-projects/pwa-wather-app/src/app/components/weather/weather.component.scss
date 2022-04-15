@@ -10,7 +10,7 @@
 }
 
 mat-form-field {
-  width: 40%;
+  width: 30%;
 }
 
 mat-icon {
@@ -27,8 +27,8 @@ h1 {
   font-size: 2.5em;
 }
 
-@media screen and (min-device-width: 375px) {
+@media screen and (max-width: 667px) {
   mat-form-field {
-    width: 80%;
+    width: 70%;
   }
 }
