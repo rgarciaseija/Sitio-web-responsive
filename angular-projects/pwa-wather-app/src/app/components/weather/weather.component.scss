@@ -10,7 +10,7 @@
 }
 
 mat-form-field {
-  width: 20%;
+  width: 40%;
 }
 
 mat-icon {
@@ -25,4 +25,10 @@ mat-card {
 h1 {
   text-align: center;
   font-size: 2.5em;
+}
+
+@media screen and (min-device-width: 375px) {
+  mat-form-field {
+    width: 80%;
+  }
 }
