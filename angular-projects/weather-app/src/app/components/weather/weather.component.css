@@ -1,0 +1,22 @@
+img {
+  width: 250px;
+  height: 250px;
+  padding-bottom: 1em;
+}
+
+div {
+  background-color: #96B5E5;
+}
+
+.header,
+.subheader {
+  color: #ECECEC;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.subheader {
+  font-weight: 500;
+}
