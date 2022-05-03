@@ -11,6 +11,7 @@ export class WeatherService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // get weather of a particular city
   getWeather(city: string, unit: string = 'm'): Observable<Weather> {
     const params = new HttpParams()
     // city to be queried from the api

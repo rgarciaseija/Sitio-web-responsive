@@ -9,24 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherComponent implements OnInit {
 
+  // weather object
   weather!: Weather | undefined;
   queryCity: string = "";
+
+  // used to display loading\progress bar
   loading: boolean = false;
 
   constructor(private weatherService : WeatherService) { }
 
   ngOnInit(): void {
+    // will not display the loading\progress bar
     this.loading=false;
   }
 
   onBtnClick() {
+    // when the button is clicked
+    // set the loading variable to true.
+    // this will display the loading bar.
     this.loading=true;
+
+    // call the search function
     this.search();
   }
 
   search() {
     this.weatherService.getWeather(this.queryCity, 'm').subscribe(weather=> {
-      this.weather=weather; this.loading=false; console.log(this.loading);
+      // get the weather data
+      this.weather=weather;
+      // this will cause the loading/pregress bar to disappear
+      this.loading=false;
     });
   }
 

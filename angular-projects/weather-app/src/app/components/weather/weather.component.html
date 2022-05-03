@@ -13,11 +13,9 @@
 
 <div class="border rounded p-5 m-5" *ngIf="weather">
   <div class="row text-center">
-    <h1 class="header display-4">{{weather.location.name}}, {{weather.location.region}}, {{weather.location.country}}
-    </h1>
+    <h1 class="header display-4">{{weather.location.name}}, {{weather.location.region}}, {{weather.location.country}}</h1>
     <h3 class="subheader">{{weather.location.localtime}}, {{weather.location.timezone_id}}</h3>
   </div>
-
   <div class="row row align-items-center mt-5">
     <div class="col text-center">
       <img src="{{weather.current.weather_icons[0]}}" alt="Weather Icon">

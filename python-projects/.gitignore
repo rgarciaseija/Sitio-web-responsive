@@ -1,0 +1,5 @@
+#python projects
+/python-projects/**/bin/
+/python-projects/**/include/
+/python-projects/**/lib/
+/python-projects/**/share/
