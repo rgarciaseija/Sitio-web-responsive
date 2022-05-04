@@ -15,3 +15,5 @@ India officially reported 148,738 COVID-19 deaths in 2020, with the tally jumpin
 Countries around the world reported only 1.83 million COVID-19 deaths in 2020 but the WHO estimates excess mortality of at least 3 million globally for that year.
 
 India has said it does not agree with the WHO’s methodology, though the scientists working on the latest estimates have defended it.
+
+Done
