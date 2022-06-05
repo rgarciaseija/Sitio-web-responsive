@@ -5,7 +5,6 @@ find_str = 'Done'
 found_str = False
 
 print("Will now look for {}".format(find_str))
-print("Found the string? {}".format(found_str))
 
 # open file for reading
 with open("file.txt", "rt", encoding="utf8") as file:
@@ -20,8 +19,6 @@ with open("file.txt", "rt", encoding="utf8") as file:
                 print("Found {}! Exiting loop".format(find_str))
                 found_str = True
                 break  # out of for loop
-            #else:
-            #    continue  # looping
 
         if found_str:
             break
