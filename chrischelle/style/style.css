@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Alice', serif;
+    color: #2A2E2F;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+header {
+    text-align: center;
+    padding: 40px 0 0 0;
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0 0 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    gap: 80px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* gap between columns (.col) */
+    gap: 4px;
+}
+
+.col {
+    max-width: 33%;
+    flex: 33%;
+}
+
+.col img {
+    width: 100%;
+    height: auto;
+}
+
+.img-container {
+    position: relative;
+    width: 100%;
+    /* max-width: 300px; */
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(73, 73, 73);
+    background: rgba(0, 0, 0, 0.5);
+    /* Black see-through */
+    /* color: #f1f1f1; */
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 1em;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.overlay img {
+    width: 25px;
+    height: 25px;
+}
+
+.img-container:hover .overlay {
+    opacity: 1;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 100px;
+}
+
+footer ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+footer li img {
+    height: 25px;
+    width: 25px;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1133px) {
+    .col {
+        flex: 33%;
+        max-width: 50%;
+    }
+}
+
+/*
+    adjust column width screens 600 and below
+*/
+@media screen and (max-width: 600px) {
+    .col {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+/*
+min-width vs max-width?
+flex?
+box-sizing: border-box;?
+*/
