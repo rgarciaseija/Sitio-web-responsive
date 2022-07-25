@@ -48,13 +48,12 @@ header p {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* gap between columns (.col) */
     gap: 4px;
 }
 
 .col {
     max-width: 33%;
-    flex: 33%;
+    flex: auto;
 }
 
 .col img {
@@ -62,10 +61,10 @@ header p {
     height: auto;
 }
 
+
 .img-container {
     position: relative;
     width: 100%;
-    /* max-width: 300px; */
 }
 
 .overlay {
@@ -82,7 +81,6 @@ header p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 10px;
 }
 
 .overlay img {
@@ -115,6 +113,7 @@ footer li img {
     height: 25px;
     width: 25px;
 }
+
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 1133px) {
