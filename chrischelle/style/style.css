@@ -116,9 +116,9 @@ footer li img {
 
 
 /* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 1133px) {
+@media screen and (max-width: 800px) {
     .col {
-        flex: 33%;
+        flex: 1;
         max-width: 50%;
     }
 }
